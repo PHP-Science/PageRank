@@ -1,0 +1,18 @@
+{
+    "name": "php-science/pagerank",
+    "description": "OOP Pagerank implementation with strict type.",
+    "keywords": ["science", "pagerank", "automatic", "summarization", "PHP8", "strict"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "David Belicza",
+            "email": "87.bdavid@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "PhpScience\\PageRank\\": "src"
+        }
+    }
+}
