@@ -24,6 +24,7 @@
             <html outputDirectory="./var/code-coverage/html"
                   lowUpperBound="50"
                   highLowerBound="90"/>
+            <clover outputFile="./var/code-coverage/clover/coverage.xml" />
         </report>
     </coverage>
 

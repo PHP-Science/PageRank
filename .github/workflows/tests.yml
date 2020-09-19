@@ -33,7 +33,7 @@ jobs:
       run: composer test
       
     - name: Publish Analysis
-      if: matrix.php-versions == '7.4'
       uses: codecov/codecov-action@v1.0.13
+      directory: ./var/code-coverage/clover/coverage.xml
       with:
         name: Code Analysis
