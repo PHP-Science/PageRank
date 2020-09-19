@@ -9,6 +9,9 @@ PageRank
 	<a href="https://codecov.io/gh/PHP-Science/PageRank">
 		<img src="https://codecov.io/gh/PHP-Science/PageRank/branch/master/graph/badge.svg"/>
 	</a>
+	<a href="https://packagist.org/packages/php-science/pagerank">
+        <img src="https://poser.pugx.org/php-science/pagerank/v/stable.svg"/>
+    </a>
 </p>
 
 <p align="center">
@@ -22,7 +25,7 @@ This source code is an OOP implementation of the PageRank algorithm, under MIT l
 
 This implementation is based on Larry Page's PageRank algorithm. It weights the connections between the nodes in a graph. 
 In theory, the nodes can be websites, words, people, etc. As the number of the nodes are increasing the algorithm is 
-becoming slower. To scale the size and handle millions of nodes. The accuracy of the calculation can be limited, and the 
+becoming slower. To scale the size and handle millions of nodes, the accuracy of the calculation can be limited, and the 
 long-running calculation can be scheduled in batches using the Strategy OOP pattern in the implementation. 
 
 ## Workflow
