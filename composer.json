@@ -22,6 +22,6 @@
         "phpunit/phpunit": "^9"
     },
     "scripts": {
-        "test": "vendor/bin/phpunit --colors='always' $(pwd)/tests"
+        "test": "vendor/bin/phpunit -c $(pwd)/tests/phpunit.xml --colors='always' --do-not-cache-result"
     }
 }
