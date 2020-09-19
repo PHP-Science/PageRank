@@ -6,41 +6,56 @@ namespace PhpScience\PageRank\Service;
 
 use PhpScience\PageRank\Data\NodeCollectionInterface;
 use PhpScience\PageRank\Service\PageRankAlgorithm\RankingInterface;
-use PhpScience\PageRank\Strategy\NodeDataStrategyInterface;
+use PhpScience\PageRank\Strategy\NodeDataSourceStrategyInterface;
 
 class PageRankAlgorithm implements PageRankAlgorithmInterface
 {
-    private NodeDataStrategyInterface $nodeDataStrategy;
-    private RankingInterface          $ranking;
+    private NodeDataSourceStrategyInterface $nodeDataStrategy;
+    private RankingInterface                $ranking;
 
     public function __construct(
         RankingInterface $ranking,
-        NodeDataStrategyInterface $nodeDataStrategy
+        NodeDataSourceStrategyInterface $nodeDataStrategy
     ) {
         $this->nodeDataStrategy = $nodeDataStrategy;
         $this->ranking = $ranking;
     }
 
-    public function run(int $powerMethodIterationCount): NodeCollectionInterface
+    public function run(int $maxIterate): NodeCollectionInterface
+    {
+        $this->initiateRanking();
+
+        return $this->runBatch($maxIterate);
+    }
+
+    public function initiateRanking(): NodeCollectionInterface
     {
         $nodeCollection = $this->nodeDataStrategy->getNodeCollection();
 
         $this->ranking->calculateInitialRank($nodeCollection);
         $this->nodeDataStrategy->updateNodes($nodeCollection);
-        $this->powerIterate($nodeCollection, $powerMethodIterationCount);
+
+        return $nodeCollection;
+    }
+
+    public function runBatch(int $maxIterate): NodeCollectionInterface
+    {
+        $nodeCollection = $this->nodeDataStrategy->getNodeCollection();
+
+        $this->powerIterate($nodeCollection, $maxIterate);
 
         return $nodeCollection;
     }
 
     private function powerIterate(
         NodeCollectionInterface $nodeCollection,
-        int $powerMethodIterationCount
+        int $maxIterate
     ): void {
         $noneRepresentableDiffCount = 0;
         $i = 0;
 
         while (
-            $i < $powerMethodIterationCount
+            $i < $maxIterate
             && $noneRepresentableDiffCount < $nodeCollection->getAllNodeCount()
         ) {
             $i++;

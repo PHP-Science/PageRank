@@ -8,7 +8,7 @@ use PhpScience\PageRank\Builder\NodeBuilder;
 use PhpScience\PageRank\Builder\NodeCollectionBuilder;
 use PhpScience\PageRank\Service\PageRankAlgorithm\RankComparator;
 use PhpScience\PageRank\Service\PageRankAlgorithm\Ranking;
-use PhpScience\PageRank\Strategy\MemoryStrategy;
+use PhpScience\PageRank\Strategy\MemorySourceStrategy;
 use PHPUnit\Framework\TestCase;
 
 class PageRankAlgorithmTest extends TestCase
@@ -21,7 +21,7 @@ class PageRankAlgorithmTest extends TestCase
 
         $nodeBuilder = new NodeBuilder();
         $nodeCollectionBuilder = new NodeCollectionBuilder();
-        $strategy = new MemoryStrategy(
+        $strategy = new MemorySourceStrategy(
             $nodeBuilder,
             $nodeCollectionBuilder,
             $dataSource

@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace PhpScience\PageRank\Service\PageRankAlgorithm;
 
 use PhpScience\PageRank\Data\NodeCollectionInterface;
-use PhpScience\PageRank\Strategy\NodeDataStrategyInterface;
+use PhpScience\PageRank\Strategy\NodeDataSourceStrategyInterface;
 
 class Ranking implements RankingInterface
 {
-    private NodeDataStrategyInterface $nodeDataStrategy;
-    private RankComparatorInterface   $rankComparator;
+    private NodeDataSourceStrategyInterface $nodeDataStrategy;
+    private RankComparatorInterface         $rankComparator;
 
     public function __construct(
         RankComparatorInterface $rankComparator,
-        NodeDataStrategyInterface $nodeDataStrategy
+        NodeDataSourceStrategyInterface $nodeDataStrategy
     ) {
         $this->nodeDataStrategy = $nodeDataStrategy;
         $this->rankComparator = $rankComparator;

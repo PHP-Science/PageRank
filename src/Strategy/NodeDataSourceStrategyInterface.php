@@ -6,7 +6,15 @@ namespace PhpScience\PageRank\Strategy;
 
 use PhpScience\PageRank\Data\NodeCollectionInterface;
 
-interface NodeDataStrategyInterface
+/**
+ * This data source strategy is responsible to handle all of the possible io
+ * operations. If the pagerank calculation has to be able to run in multiple
+ * batches then this strategy is responsible to feed the algorithm with the
+ * correct node data and update the changes in the storage.
+ *
+ * @package PhpScience\PageRank\Strategy
+ */
+interface NodeDataSourceStrategyInterface
 {
     /**
      * It returns all of the incoming node ids of the subject node.

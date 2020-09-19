@@ -9,6 +9,11 @@ use PhpScience\PageRank\Data\NodeCollectionInterface;
 
 class NodeCollectionBuilder
 {
+    /**
+     * @param mixed[] $nodes
+     *
+     * @return NodeCollectionInterface
+     */
     public function build(array $nodes): NodeCollectionInterface
     {
         $pageRankTransferObject = new NodeCollection();

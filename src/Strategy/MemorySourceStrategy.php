@@ -8,7 +8,7 @@ use PhpScience\PageRank\Builder\NodeBuilder;
 use PhpScience\PageRank\Builder\NodeCollectionBuilder;
 use PhpScience\PageRank\Data\NodeCollectionInterface;
 
-class MemoryStrategy implements NodeDataStrategyInterface
+class MemorySourceStrategy implements NodeDataSourceStrategyInterface
 {
     private NodeBuilder           $nodeBuilder;
     private NodeCollectionBuilder $nodeCollectionBuilder;

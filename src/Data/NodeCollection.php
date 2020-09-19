@@ -7,11 +7,8 @@ namespace PhpScience\PageRank\Data;
 class NodeCollection implements NodeCollectionInterface
 {
     private array $nodes;
-    private int $allNodeCount;
+    private int   $allNodeCount;
 
-    /**
-     * @inheritDoc
-     */
     public function getNodes(): array
     {
         return $this->nodes;

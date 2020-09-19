@@ -9,9 +9,14 @@ use PhpScience\PageRank\Data\NodeInterface;
 
 class NodeBuilder
 {
-    public const FIELD_ID   = 'id';
-    public const FIELD_RANK = 'rank';
+    private const FIELD_ID   = 'id';
+    private const FIELD_RANK = 'rank';
 
+    /**
+     * @param mixed[] $nodeData
+     *
+     * @return NodeInterface
+     */
     public function build(array $nodeData): NodeInterface
     {
         $node = new Node();
