@@ -1,5 +1,7 @@
 /.idea
 /.phpunit.result.cache
 /composer.lock
-/index*
 /vendor
+/var
+/coverage.xml
+/index*
