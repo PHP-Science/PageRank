@@ -12,20 +12,24 @@ class PageRankAlgorithm implements PageRankAlgorithmInterface
 {
     private NodeDataSourceStrategyInterface $nodeDataStrategy;
     private RankingInterface                $ranking;
+    private NormalizerInterface             $normalizer;
 
     public function __construct(
         RankingInterface $ranking,
-        NodeDataSourceStrategyInterface $nodeDataStrategy
+        NodeDataSourceStrategyInterface $nodeDataStrategy,
+        NormalizerInterface $normalizer
     ) {
         $this->nodeDataStrategy = $nodeDataStrategy;
         $this->ranking = $ranking;
+        $this->normalizer = $normalizer;
     }
 
     public function run(int $maxIterate): NodeCollectionInterface
     {
         $this->initiateRanking();
+        $this->runBatch($maxIterate);
 
-        return $this->runBatch($maxIterate);
+        return $this->normalize();
     }
 
     public function initiateRanking(): NodeCollectionInterface
@@ -43,6 +47,21 @@ class PageRankAlgorithm implements PageRankAlgorithmInterface
         $nodeCollection = $this->nodeDataStrategy->getNodeCollection();
 
         $this->powerIterate($nodeCollection, $maxIterate);
+
+        return $nodeCollection;
+    }
+
+    public function normalize(): NodeCollectionInterface
+    {
+        $nodeCollection = $this->nodeDataStrategy->getNodeCollection();
+        $min = $this->nodeDataStrategy->getLowestRank();
+        $max = $this->nodeDataStrategy->getHighestRank();
+
+        $this->normalizer->normalize(
+            $nodeCollection,
+            $min,
+            $max
+        );
 
         return $nodeCollection;
     }

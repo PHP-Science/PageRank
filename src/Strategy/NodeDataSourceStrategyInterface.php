@@ -57,4 +57,18 @@ interface NodeDataSourceStrategyInterface
      * @return NodeCollectionInterface
      */
     public function getNodeCollection(): NodeCollectionInterface;
+
+    /**
+     * It returns the highest rank from the node collection.
+     *
+     * @return float
+     */
+    public function getHighestRank(): float;
+
+    /**
+     * It returns the lowest rank from the node collection.
+     *
+     * @return float
+     */
+    public function getLowestRank(): float;
 }

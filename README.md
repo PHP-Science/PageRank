@@ -32,6 +32,8 @@ long-running calculation can be scheduled in batches using the Strategy OOP patt
 iteration number.
 * However, the iteration stops when the ranks are accurate enough even if the max iteration didn't reach its limit.
 * The accuracy measured by the float epsilon constant.
+* At the end the algorithm normalizes the ranks between 0 and 1 and then scale them between 1 and 10. The scaling range 
+is configurable.
 * Getting, setting, updating the nodes from the resource is a responsibility of the NodeDataSourceStrategyInterface.
 * The package provides a simple implementation of the NodeDataSourceStrategyInterface that only keeps the nodes in the 
 memory. Another way of implementing the NodeDataSourceStrategyInterface could be a simple class that uses an ORM to
@@ -62,9 +64,12 @@ $ranking = new Ranking(
     $strategy
 );
 
+$normalizer = new Normalizer();
+
 $pageRankAlgorithm = new PageRankAlgorithm(
     $ranking,
-    $strategy
+    $strategy,
+    $normalizer
 );
 
 $maxIteration = 100;

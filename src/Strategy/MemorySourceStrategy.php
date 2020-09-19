@@ -15,6 +15,7 @@ class MemorySourceStrategy implements NodeDataSourceStrategyInterface
 
     private array $previousRanks = [];
     private array $nodeListMap;
+    private ?NodeCollectionInterface $nodeCollection = null;
 
     public function __construct(
         NodeBuilder $nodeBuilder,
@@ -50,12 +51,48 @@ class MemorySourceStrategy implements NodeDataSourceStrategyInterface
 
     public function getNodeCollection(): NodeCollectionInterface
     {
-        $nodes = [];
+        if (null === $this->nodeCollection) {
+            $nodes = [];
 
-        foreach ($this->nodeListMap as $nodeMap) {
-            $nodes[] = $this->nodeBuilder->build($nodeMap);
+            foreach ($this->nodeListMap as $nodeMap) {
+                $nodes[] = $this->nodeBuilder->build($nodeMap);
+            }
+
+            $this->nodeCollection = $this->nodeCollectionBuilder->build($nodes);
         }
 
-        return $this->nodeCollectionBuilder->build($nodes);
+        return $this->nodeCollection;
+    }
+
+    public function getHighestRank(): float
+    {
+        $highest = null;
+
+        foreach ($this->getNodeCollection()->getNodes() as $node) {
+            if (
+                null === $highest
+                || $node->getRank() > $highest
+            ) {
+                $highest = $node->getRank();
+            }
+        }
+
+        return $highest;
+    }
+
+    public function getLowestRank(): float
+    {
+        $lowest = null;
+
+        foreach ($this->getNodeCollection()->getNodes() as $node) {
+            if (
+                null === $lowest
+                || $node->getRank() < $lowest
+            ) {
+                $lowest = $node->getRank();
+            }
+        }
+
+        return $lowest;
     }
 }

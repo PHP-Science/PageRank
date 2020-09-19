@@ -13,30 +13,38 @@ use PHPUnit\Framework\TestCase;
 
 class PageRankAlgorithmTest extends TestCase
 {
-    private PageRankAlgorithm $pageRankAlgorithm;
-
-    protected function setUp(): void
+    /**
+     * @dataProvider dataProviderExpectedNormalizedRanks
+     *
+     * @param float[] $expectedRanks
+     */
+    public function testRun(array $expectedRanks): void
     {
-        $dataSource = $this->getDataSource();
+        $pageRankAlgorithm = $this->createPageRankAlgorithm();
+        $nodeCollection = $pageRankAlgorithm->run(2);
 
-        $nodeBuilder = new NodeBuilder();
-        $nodeCollectionBuilder = new NodeCollectionBuilder();
-        $strategy = new MemorySourceStrategy(
-            $nodeBuilder,
-            $nodeCollectionBuilder,
-            $dataSource
-        );
+        static::assertSame(4, $nodeCollection->getAllNodeCount());
 
-        $rankComparator = new RankComparator();
-        $ranking = new Ranking(
-            $rankComparator,
-            $strategy
-        );
+        foreach ($nodeCollection->getNodes() as $node) {
+            $expectedRank = $expectedRanks[$node->getId()];
+            $actualRank = $node->getRank();
 
-        $this->pageRankAlgorithm = new PageRankAlgorithm(
-            $ranking,
-            $strategy
-        );
+            static::assertSame($expectedRank, $actualRank);
+        }
+    }
+
+    public function dataProviderExpectedNormalizedRanks(): array
+    {
+        return [
+            'scenario_1' => [
+                'expectedRanks' => [
+                    1 => 1.0,
+                    2 => 2.4999999999999996,
+                    3 => 10.0,
+                    4 => 8.5
+                ]
+            ]
+        ];
     }
 
     /**
@@ -44,11 +52,11 @@ class PageRankAlgorithmTest extends TestCase
      *
      * @param float[] $expectedRanks
      */
-    public function testRun(array $expectedRanks): void
+    public function testRunBatch(array $expectedRanks): void
     {
-        $nodeCollection = $this
-            ->pageRankAlgorithm
-            ->run(2);
+        $pageRankAlgorithm = $this->createPageRankAlgorithm();
+        $pageRankAlgorithm->initiateRanking();
+        $nodeCollection = $pageRankAlgorithm->runBatch(2);
 
         static::assertSame(4, $nodeCollection->getAllNodeCount());
 
@@ -98,5 +106,32 @@ class PageRankAlgorithmTest extends TestCase
                 'in'  => [3, 2]
             ]
         ];
+    }
+
+    private function createPageRankAlgorithm(): PageRankAlgorithmInterface
+    {
+        $dataSource = $this->getDataSource();
+
+        $nodeBuilder = new NodeBuilder();
+        $nodeCollectionBuilder = new NodeCollectionBuilder();
+        $strategy = new MemorySourceStrategy(
+            $nodeBuilder,
+            $nodeCollectionBuilder,
+            $dataSource
+        );
+
+        $rankComparator = new RankComparator();
+        $ranking = new Ranking(
+            $rankComparator,
+            $strategy
+        );
+
+        $normalizer = new Normalizer();
+
+        return new PageRankAlgorithm(
+            $ranking,
+            $strategy,
+            $normalizer
+        );
     }
 }

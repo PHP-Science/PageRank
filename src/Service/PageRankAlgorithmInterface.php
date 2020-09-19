@@ -47,4 +47,13 @@ interface PageRankAlgorithmInterface
      * @return NodeCollectionInterface
      */
     public function runBatch(int $maxIterate): NodeCollectionInterface;
+
+    /**
+     * After the pagerank calculation, the ranks have wide range of minus and
+     * plus values. This method adjusts the ranks between a minimum and a
+     * maximum value.
+     *
+     * @return NodeCollectionInterface
+     */
+    public function normalize(): NodeCollectionInterface;
 }
