@@ -4,19 +4,26 @@ PageRank
 
 <p align="center">
 	<a href="https://github.com/PHP-Science/PageRank/actions">
-		<img src="https://github.com/php-science/pagerank/workflows/tests/badge.svg" 
-		alt="GoDoc" />
+		<img src="https://github.com/php-science/pagerank/workflows/tests/badge.svg"/>
 	</a>
 	<a href="https://codecov.io/gh/PHP-Science/PageRank">
-		<img src="https://codecov.io/gh/PHP-Science/PageRank/branch/master/graph/badge.svg" 
-	    alt="License: MIT" />
+		<img src="https://codecov.io/gh/PHP-Science/PageRank/branch/master/graph/badge.svg"/>
 	</a>
 </p>
 
 <p align="center">
 This source code is an OOP implementation of the PageRank algorithm, under MIT licence.
 <br />The minimum required PHP version is 7.4.
+<br />
+<br />
 </p>
+
+## About
+
+This implementation is based on Larry Page's PageRank algorithm. It weights the connections between the nodes in a graph. 
+In theory, the nodes can be websites, words, people, etc. As the number of the nodes are increasing the algorithm is 
+becoming slower. To scale the size and handle millions of nodes. The accuracy of the calculation can be limited, and the 
+long-running calculation can be scheduled in batches using the Strategy OOP pattern in the implementation. 
 
 ## Workflow
 
