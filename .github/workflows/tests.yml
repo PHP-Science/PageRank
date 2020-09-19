@@ -22,7 +22,7 @@ jobs:
         php-version: ${{ matrix.php-versions }}
         coverage: xdebug 
 
-    - name: Validate composer.json and composer.lock
+    - name: Validate composer files
       run: composer validate
       
     - name: Install dependencies
@@ -31,3 +31,9 @@ jobs:
 
     - name: Run test suite
       run: composer test
+      
+    - name: Publish Analysis
+      if: matrix.php-versions == '7.4'
+      uses: codecov/codecov-action@v1.0.13
+      with:
+        name: Code Analysis
