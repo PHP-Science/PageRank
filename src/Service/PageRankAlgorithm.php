@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PhpScience\PageRank\Service;
 
 use PhpScience\PageRank\Data\NodeCollectionInterface;
+use PhpScience\PageRank\Service\PageRankAlgorithm\NormalizerInterface;
 use PhpScience\PageRank\Service\PageRankAlgorithm\RankingInterface;
 use PhpScience\PageRank\Strategy\NodeDataSourceStrategyInterface;
 

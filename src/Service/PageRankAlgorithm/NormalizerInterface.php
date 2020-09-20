@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PhpScience\PageRank\Service;
+namespace PhpScience\PageRank\Service\PageRankAlgorithm;
 
 use PhpScience\PageRank\Data\NodeCollectionInterface;
 

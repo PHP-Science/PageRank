@@ -6,6 +6,7 @@ namespace PhpScience\PageRank\Service;
 
 use PhpScience\PageRank\Builder\NodeBuilder;
 use PhpScience\PageRank\Builder\NodeCollectionBuilder;
+use PhpScience\PageRank\Service\PageRankAlgorithm\Normalizer;
 use PhpScience\PageRank\Service\PageRankAlgorithm\RankComparator;
 use PhpScience\PageRank\Service\PageRankAlgorithm\Ranking;
 use PhpScience\PageRank\Strategy\MemorySourceStrategy;

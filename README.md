@@ -15,7 +15,7 @@ PageRank
 </p>
 
 <p align="center">
-This source code is an OOP implementation of the PageRank algorithm, under MIT licence.
+This source code is an OOP implementation of the PageRank algorithm.
 <br />The minimum required PHP version is 7.4.
 <br />
 <br />
@@ -35,7 +35,7 @@ long-running calculation can be scheduled in batches using the Strategy OOP patt
 iteration number.
 * However, the iteration stops when the ranks are accurate enough even if the max iteration didn't reach its limit.
 * The accuracy measured by the float epsilon constant.
-* At the end the algorithm normalizes the ranks between 0 and 1 and then scale them between 1 and 10. The scaling range 
+* At the end, the algorithm normalizes the ranks between 0 and 1 and then scale them between 1 and 10. The scaling range 
 is configurable.
 * Getting, setting, updating the nodes from the resource is a responsibility of the NodeDataSourceStrategyInterface.
 * The package provides a simple implementation of the NodeDataSourceStrategyInterface that only keeps the nodes in the 

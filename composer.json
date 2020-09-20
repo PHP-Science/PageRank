@@ -9,11 +9,14 @@
             "email": "87.bdavid@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "php": "7.4.*"
+    },
     "autoload": {
         "psr-4": {
             "PhpScience\\PageRank\\": [
                 "src",
+                "tests/unit",
                 "tests/functional"
             ]
         }
