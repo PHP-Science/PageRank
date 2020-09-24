@@ -12,6 +12,9 @@ PageRank
 	<a href="https://codeclimate.com/github/PHP-Science/PageRank/maintainability">
 	    <img src="https://api.codeclimate.com/v1/badges/48a10db2646ad4ce890c/maintainability" />
 	</a>
+	<a href="https://scrutinizer-ci.com/g/PHP-Science/PageRank">
+        <img src="https://scrutinizer-ci.com/g/PHP-Science/PageRank/badges/quality-score.png?b=master"/>
+    </a>
 	<a href="https://packagist.org/packages/php-science/pagerank">
         <img src="https://poser.pugx.org/php-science/pagerank/v/stable.svg"/>
     </a>

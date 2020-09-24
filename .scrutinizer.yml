@@ -1,0 +1,12 @@
+build:
+  nodes:
+    php:
+      environment:
+        php: 7.4
+    coverage:
+      tests:
+        override:
+          - command: composer test
+            coverage:
+              file: var/code-coverage/clover/coverage.xml
+              format: clover
