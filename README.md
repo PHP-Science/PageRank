@@ -9,6 +9,9 @@ PageRank
 	<a href="https://codecov.io/gh/PHP-Science/PageRank">
 		<img src="https://codecov.io/gh/PHP-Science/PageRank/branch/master/graph/badge.svg"/>
 	</a>
+	<a href="https://codeclimate.com/github/PHP-Science/PageRank/maintainability">
+	    <img src="https://api.codeclimate.com/v1/badges/48a10db2646ad4ce890c/maintainability" />
+	</a>
 	<a href="https://packagist.org/packages/php-science/pagerank">
         <img src="https://poser.pugx.org/php-science/pagerank/v/stable.svg"/>
     </a>
@@ -16,7 +19,6 @@ PageRank
 
 <p align="center">
 This source code is an OOP implementation of the PageRank algorithm.
-<br />The minimum required PHP version is 7.4.
 <br />
 <br />
 </p>
